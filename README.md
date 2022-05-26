@@ -2,6 +2,6 @@
 
 Hangman game written in Python.
 
-## Requriements
+## Requirements
 
 Python 3.X
