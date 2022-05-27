@@ -2,6 +2,7 @@ import random
 import string
 
 from words import words
+from hangman_visual import lives_visual_dict
 
 
 def random_word(words):
@@ -25,9 +26,10 @@ def play():
         print(f"\nLives: {lives}")
         print("You have used these letters: ", ' '.join(used_letters))
 
-        # Display current word.
+        # Display current word and hangman.
         word_list = [
             letter if letter in used_letters else '-' for letter in word]
+        print(lives_visual_dict[lives])
         print("Current word: ", ' '.join(word_list))
 
         # Requesting player input.
@@ -48,7 +50,8 @@ def play():
 
     # Game Won/Lost conditions.
     if lives == 0:
-        print(f"\nYou have died. The word was {word}. Better luck next time!")
+        print(lives_visual_dict[lives])
+        print(f"You have died. The word was {word}. Better luck next time!")
     else:
         print("\nCongratulations!")
         print(f"You have guessed the word {word} correctly!")
