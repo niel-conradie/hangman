@@ -19,9 +19,11 @@ def play():
     alphabet = set(string.ascii_uppercase)
     used_letters = set()
 
-    while len(word_letters) > 0:
-        # Display letters used.
-        print("\nYou have used these letters: ", ' '.join(used_letters))
+    lives = 6
+    while len(word_letters) > 0 and lives > 0:
+        # Display letters used and lives left.
+        print(f"\nLives: {lives}")
+        print("You have used these letters: ", ' '.join(used_letters))
 
         # Display current word.
         word_list = [
@@ -37,11 +39,19 @@ def play():
             if player_input in word_letters:
                 word_letters.remove(player_input)
             else:
+                lives -= 1
                 print(f"\n{player_input} is not in the word.")
         elif player_input in used_letters:
             print("\nYou have already used that character. Please try again.")
         else:
             print("\nInvalid character. Please try again.")
+
+    # Game Won/Lost conditions.
+    if lives == 0:
+        print(f"\nYou have died. The word was {word}. Better luck next time!")
+    else:
+        print("\nCongratulations!")
+        print(f"You have guessed the word {word} correctly!")
 
 
 if __name__ == '__main__':
