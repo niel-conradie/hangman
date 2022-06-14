@@ -70,6 +70,10 @@ class Hangman:
             print(f"You have guessed the word {word} correctly!")
             return True
 
+    def reset_player_lives(self):
+        """ Reset lives to default value. """
+        self.lives = 6
+
     @staticmethod
     def restart():
         """ Requesting user input and validating choice. """
