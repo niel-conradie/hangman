@@ -9,6 +9,7 @@ class Hangman:
     def __init__(self):
         """ Initialize class attributes. """
         self.lives = 6
+        self.player_score = 0
 
     @staticmethod
     def random_word(words):
@@ -37,7 +38,7 @@ class Hangman:
             try:
                 user_input = input("Guess a letter: ").upper()
             except ValueError:
-                print(f"\nThat is not a letter.")
+                print("\nThat is not a letter.")
                 continue
             return user_input
 
@@ -69,6 +70,14 @@ class Hangman:
             print("\nCongratulations!")
             print(f"You have guessed the word {word} correctly!")
             return True
+
+    def add_player_score(self):
+        """ Add point to player score. """
+        self.player_score += 1
+
+    def display_scoreboard(self):
+        """ Display the amount of correct answers. """
+        print(f"Correct: {self.player_score}")
 
     def reset_player_lives(self):
         """ Reset lives to default value. """
