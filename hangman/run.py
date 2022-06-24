@@ -8,8 +8,14 @@ def run():
     """ Hangman. """
     run = Hangman()
 
+    # Display difficulty options.
+    run.display_difficulty()
+    # Requesting user input.
+    user_input = run.user_input()
+
     while True:
-        word = run.random_word(words)
+        # Assign player to appropriate difficulty and select word.
+        word = run.user_input_allocation(words, user_input)
         word_letters = set(word)
         alphabet = set(string.ascii_uppercase)
         used_letters = set()
