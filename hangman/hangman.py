@@ -12,12 +12,63 @@ class Hangman:
         self.player_score = 0
 
     @staticmethod
-    def random_word(words):
+    def easy_random_word(words):
         """ Randomly select a word from a list. """
-        word = random.choice(words)
-        while '-' in word or ' ' in word:
+        while True:
             word = random.choice(words)
+            while '-' in word or ' ' in word:
+                word = random.choice(words)
+            # Length of word validation condition.
+            if len(word) <= 5:
+                break
+            else:
+                continue
         return word.upper()
+
+    @staticmethod
+    def hard_random_word(words):
+        """ Randomly select a word from a list. """
+        while True:
+            word = random.choice(words)
+            while '-' in word or ' ' in word:
+                word = random.choice(words)
+            # Length of word validation condition.
+            if len(word) > 5:
+                break
+            else:
+                continue
+        return word.upper()
+
+    @staticmethod
+    def display_difficulty():
+        """ Display difficulty options. """
+        print("\nSelect your difficulty.\n"
+              "\nBeginner: Type '1'"
+              "\nExpert: Type '2'\n")
+
+    @staticmethod
+    def user_input():
+        """ Requesting user input and validating choice. """
+        while True:
+            try:
+                user_input = int(input("Enter: "))
+            except ValueError:
+                print("\nThat is not a number.\n")
+                continue
+
+            choices = [1, 2]
+            if user_input not in choices:
+                print(f"\n{user_input} is not an valid choice!\n")
+                continue
+            else:
+                return user_input
+
+    def user_input_allocation(self, words, user_input):
+        """ Assign user input to appropriate difficulty. """
+        if user_input == 1:
+            return self.easy_random_word(words)
+        if user_input == 2:
+            return self.hard_random_word(words)
 
     def display_hangman(self):
         """ Display hangman visuals. """
