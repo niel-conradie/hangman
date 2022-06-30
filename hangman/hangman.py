@@ -1,23 +1,22 @@
-import random
-
+from random import choice
 from hangman_visual import lives_visual_dict
 
 
 class Hangman:
-    """ A class to represent a Hangman game. """
+    """A class to represent a Hangman game."""
 
     def __init__(self):
-        """ Initialize class attributes. """
+        """Initialize class attributes."""
         self.lives = 6
         self.player_score = 0
 
     @staticmethod
     def easy_random_word(words):
-        """ Randomly select a word from a list. """
+        """Randomly select a word from a list."""
         while True:
-            word = random.choice(words)
-            while '-' in word or ' ' in word:
-                word = random.choice(words)
+            word = choice(words)
+            while "-" in word or " " in word:
+                word = choice(words)
             # Length of word validation condition.
             if len(word) <= 5:
                 break
@@ -27,11 +26,11 @@ class Hangman:
 
     @staticmethod
     def hard_random_word(words):
-        """ Randomly select a word from a list. """
+        """Randomly select a word from a list."""
         while True:
-            word = random.choice(words)
-            while '-' in word or ' ' in word:
-                word = random.choice(words)
+            word = choice(words)
+            while "-" in word or " " in word:
+                word = choice(words)
             # Length of word validation condition.
             if len(word) > 5:
                 break
@@ -41,14 +40,14 @@ class Hangman:
 
     @staticmethod
     def display_difficulty():
-        """ Display difficulty options. """
-        print("\nSelect your difficulty.\n"
-              "\nBeginner: Type '1'"
-              "\nExpert: Type '2'\n")
+        """Display difficulty options."""
+        print("\nSelect your difficulty.")
+        print("\nBeginner: Type '1'")
+        print("Expert: Type '2'\n")
 
     @staticmethod
     def user_input():
-        """ Requesting user input and validating choice. """
+        """Requesting user input and validating choice."""
         while True:
             try:
                 user_input = int(input("Enter: "))
@@ -64,27 +63,26 @@ class Hangman:
                 return user_input
 
     def user_input_allocation(self, words, user_input):
-        """ Assign user input to appropriate difficulty. """
+        """Assign user input to appropriate difficulty."""
         if user_input == 1:
             return self.easy_random_word(words)
         if user_input == 2:
             return self.hard_random_word(words)
 
     def display_hangman(self):
-        """ Display hangman visuals. """
+        """Display hangman visuals."""
         print(lives_visual_dict[self.lives])
 
     def display_text(self, word, used_letters):
-        """ Display hangman information. """
+        """Display hangman information."""
         print(f"Lives: {self.lives}")
-        print("You have used these letters: ", ' '.join(used_letters))
-        word_list = [
-            letter if letter in used_letters else '-' for letter in word]
-        print("Current word: ", ' '.join(word_list))
+        print("You have used these letters: ", " ".join(used_letters))
+        word_list = [letter if letter in used_letters else "-" for letter in word]
+        print("Current word: ", " ".join(word_list))
 
     @staticmethod
     def user_input_guess():
-        """ Requesting user input and validating letter. """
+        """Requesting user input and validating letter."""
         while True:
             try:
                 user_input = input("Guess a letter: ").upper()
@@ -93,8 +91,10 @@ class Hangman:
                 continue
             return user_input
 
-    def validate_user_guess(self, user_input_guess, word_letters, alphabet, used_letters):
-        """ User input validation and conditions. """
+    def validate_user_guess(
+        self, user_input_guess, word_letters, alphabet, used_letters
+    ):
+        """User input validation and conditions."""
         if user_input_guess in alphabet - used_letters:
             used_letters.add(user_input_guess)
             if user_input_guess in word_letters:
@@ -108,45 +108,44 @@ class Hangman:
             print("\nInvalid character. Please try again.")
 
     def dead_condition(self, word):
-        """ Return True if out of lives. """
+        """Return True if out of lives."""
         if self.lives == 0:
-            print(
-                f"\nYou have died. The word was {word}. Better luck next time!")
+            print(f"\nYou have died. The word was {word}. Better luck next time!")
             return True
 
     @staticmethod
     def win_condition(word, word_letters):
-        """ Return True if correct word. """
+        """Return True if correct word."""
         if len(word_letters) == 0:
             print("\nCongratulations!")
             print(f"You have guessed the word {word} correctly!")
             return True
 
     def add_player_score(self):
-        """ Add point to player score. """
+        """Add point to player score."""
         self.player_score += 1
 
     def display_scoreboard(self):
-        """ Display the amount of correct answers. """
+        """Display the amount of correct answers."""
         print(f"Correct: {self.player_score}")
 
     def reset_player_lives(self):
-        """ Reset lives to default value. """
+        """Reset lives to default value."""
         self.lives = 6
 
     @staticmethod
     def restart():
-        """ Requesting user input and validating choice. """
+        """Requesting user input and validating choice."""
         while True:
             user_input = input("\nRestart? Yes/No: ").lower()
-            choices = ['yes', 'no']
+            choices = ["yes", "no"]
             if user_input not in choices:
                 print("\nPlease type 'yes' or 'no'")
                 continue
 
             # User input conditions.
-            if user_input == 'yes':
+            if user_input == "yes":
                 return
-            if user_input == 'no':
+            if user_input == "no":
                 print("\nThank you for playing!")
                 quit()
