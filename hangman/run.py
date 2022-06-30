@@ -5,7 +5,7 @@ from hangman import Hangman
 
 
 def run():
-    """ Hangman. """
+    """Hangman."""
     run = Hangman()
 
     # Display difficulty options.
@@ -29,7 +29,8 @@ def run():
             user_input_guess = run.user_input_guess()
             # Validating user input and conditions.
             run.validate_user_guess(
-                user_input_guess, word_letters, alphabet, used_letters)
+                user_input_guess, word_letters, alphabet, used_letters
+            )
 
             # Out of lives condition.
             if run.dead_condition(word) == True:
@@ -57,5 +58,5 @@ def run():
         continue
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run()
