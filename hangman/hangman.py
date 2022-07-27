@@ -1,4 +1,8 @@
+import string
+
 from random import choice
+
+from words import words
 from hangman_visual import lives_visual_dict
 
 
@@ -17,6 +21,7 @@ class Hangman:
             word = choice(words)
             while "-" in word or " " in word:
                 word = choice(words)
+
             # Length of word validation condition.
             if len(word) <= 5:
                 break
@@ -31,6 +36,7 @@ class Hangman:
             word = choice(words)
             while "-" in word or " " in word:
                 word = choice(words)
+
             # Length of word validation condition.
             if len(word) > 5:
                 break
@@ -132,6 +138,57 @@ class Hangman:
     def reset_player_lives(self):
         """Reset lives to default value."""
         self.lives = 6
+
+    def start_game(self):
+        """Hangman."""
+        # Display difficulty options.
+        self.display_difficulty()
+        # Requesting user input.
+        user_input = self.user_input()
+
+        while True:
+            # Assign player to appropriate difficulty and select word.
+            word = self.user_input_allocation(words, user_input)
+            word_letters = set(word)
+            alphabet = set(string.ascii_uppercase)
+            used_letters = set()
+
+            while True:
+                # Display hangman visuals.
+                self.display_hangman()
+                # Display hangman text.
+                self.display_text(word, used_letters)
+                # Requesting user input.
+                user_input_guess = self.user_input_guess()
+                # Validating user input and conditions.
+                self.validate_user_guess(
+                    user_input_guess, word_letters, alphabet, used_letters
+                )
+
+                # Out of lives condition.
+                if self.dead_condition(word) == True:
+                    # Display hangman visuals.
+                    self.display_hangman()
+                    # Reset lives.
+                    self.reset_player_lives()
+                    break
+
+                # Correct word condition.
+                if self.win_condition(word, word_letters) == True:
+                    # Add point to player score.
+                    self.add_player_score()
+                    # Display scoreboard.
+                    self.display_scoreboard()
+                    # Reset lives.
+                    self.reset_player_lives()
+                    break
+
+                continue
+
+            # Requesting user input.
+            self.restart()
+
+            continue
 
     @staticmethod
     def restart():
