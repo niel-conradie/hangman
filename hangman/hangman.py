@@ -44,36 +44,28 @@ class Hangman:
                 continue
         return word.upper()
 
-    @staticmethod
-    def display_difficulty():
-        """Display difficulty options."""
-        print("\nSelect your difficulty.")
-        print("\nBeginner: Type '1'")
-        print("Expert: Type '2'\n")
-
-    @staticmethod
-    def user_input():
+    def user_input(self, words):
         """Requesting user input and validating choice."""
         while True:
+            print("\nSelect your difficulty.")
+            print("\nBeginner: Type '1'")
+            print("Expert: Type '2'")
+
             try:
-                user_input = int(input("Enter: "))
+                user_input = int(input("\nEnter: "))
             except ValueError:
-                print("\nThat is not a number.\n")
+                print("\nThat is not a number.")
                 continue
 
+            # User input validation conditions.
             choices = [1, 2]
             if user_input not in choices:
-                print(f"\n{user_input} is not an valid choice!\n")
+                print(f"\n{user_input} is not an valid choice!")
                 continue
-            else:
-                return user_input
-
-    def user_input_allocation(self, words, user_input):
-        """Assign user input to appropriate difficulty."""
-        if user_input == 1:
-            return self.easy_random_word(words)
-        if user_input == 2:
-            return self.hard_random_word(words)
+            elif user_input == 1:
+                return self.easy_random_word(words)
+            elif user_input == 2:
+                return self.hard_random_word(words)
 
     def display_hangman(self):
         """Display hangman visuals."""
@@ -140,15 +132,13 @@ class Hangman:
         self.lives = 6
 
     def start_game(self):
-        """Hangman."""
-        # Display difficulty options.
-        self.display_difficulty()
+        """Starting the hangman game."""
         # Requesting user input.
-        user_input = self.user_input()
+        user_input = self.user_input(words)
 
         while True:
             # Assign player to appropriate difficulty and select word.
-            word = self.user_input_allocation(words, user_input)
+            word = user_input
             word_letters = set(word)
             alphabet = set(string.ascii_uppercase)
             used_letters = set()
