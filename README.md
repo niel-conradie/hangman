@@ -1,6 +1,6 @@
 # **Hangman**
 
-**Hangman Game written in [Python](https://www.python.org).**
+**Hangman Game Terminal written in [Python](https://www.python.org).**
 
 Hangman is a guessing game for two or more players. One player thinks of a word, phrase or sentence and the other(s) tries to guess it by suggesting letters within a certain number of guesses.
 
@@ -42,7 +42,7 @@ Hangman can be installed via [Pip](https://pypi.org/project/pip/). To start, clo
 ----
 ## **Usage**
 
-To launch the Hangman Game run thus file.
+To launch the Hangman Game use thus file.
 ```bash
   run.py
 ```
