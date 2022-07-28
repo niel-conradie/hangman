@@ -144,32 +144,25 @@ class Hangman:
             used_letters = set()
 
             while True:
-                # Display hangman visuals.
+                # Display visuals.
                 self.display_hangman()
-                # Display hangman text.
                 self.display_text(word, used_letters)
+
                 # Requesting user input.
-                user_input_guess = self.user_input_guess()
+                guess = self.user_input_guess()
                 # Validating user input and conditions.
-                self.validate_user_guess(
-                    user_input_guess, word_letters, alphabet, used_letters
-                )
+                self.validate_user_guess(guess, word_letters, alphabet, used_letters)
 
                 # Out of lives condition.
                 if self.dead_condition(word) == True:
-                    # Display hangman visuals.
                     self.display_hangman()
-                    # Reset lives.
                     self.reset_player_lives()
                     break
 
                 # Correct word condition.
                 if self.win_condition(word, word_letters) == True:
-                    # Add point to player score.
                     self.add_player_score()
-                    # Display scoreboard.
                     self.display_scoreboard()
-                    # Reset lives.
                     self.reset_player_lives()
                     break
 
@@ -185,7 +178,7 @@ class Hangman:
         """Requesting user input and validating choice."""
         while True:
             print("\nPlay Again?")
-            print("Yes: Type '1'")
+            print("\nYes: Type '1'")
             print("No: Type '2'")
 
             try:
