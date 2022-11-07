@@ -15,8 +15,8 @@ Hangman can be installed via [Pip](https://pypi.org/project/pip/). To start, clo
 
 * **Clone Repository**
 ```bash
-  $ git clone https://github.com/niel-conradie/Hangman.git
-  $ cd Hangman
+  $ git clone https://github.com/niel-conradie/hangman.git
+  $ cd hangman
 ```
 ### **Pip Install**
 
