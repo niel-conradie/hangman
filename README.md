@@ -15,37 +15,39 @@ Hangman can be installed via [Pip](https://pypi.org/project/pip/). To start, clo
 
 * **Clone Repository**
 ```bash
-  $ git clone https://github.com/niel-conradie/hangman.git
-  $ cd hangman
+git clone https://github.com/niel-conradie/hangman.git
+```
+* **Change Directory**
+```bash
+cd hangman
 ```
 ### **Pip Install**
 
 * **Create Environment**
 ```bash
-  $ python -m venv .venv
+python -m venv .venv
 ```
 * **Activate Environment**
 ```bash
-  # Bash
-  $ source .venv/Scripts/activate
+# Bash
+$ source .venv/Scripts/activate
 
-  # Command Prompt
-  C:> .venv\Scripts\activate.bat
+# Command Prompt
+C:> .venv\Scripts\activate.bat
 
-  # macOS
-  $ .venv/bin/activate
+# macOS
+$ .venv/bin/activate
 
-  # PowerShell
-  PS C:> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-  PS C:> .venv\Scripts\Activate.ps1
+# PowerShell
+PS C:> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+PS C:> .venv\Scripts\Activate.ps1
 ```
 ----
 ## **Usage**
 
-To launch the Hangman Game use thus file.
-```bash
-  run.py
-```
+- To launch the Hangman game use the [run.py](https://github.com/niel-conradie/hangman/blob/master/hangman/run.py) file to start.
+- Select the game mode in the terminal window and have fun.
+
 ----
 ## **License**
 
