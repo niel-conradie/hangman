@@ -1,5 +1,3 @@
-from sys import exit
-
 from hangman import Hangman
 
 
@@ -12,7 +10,7 @@ def run():
         run.start_game()
     except KeyboardInterrupt:
         # Stopping the game.
-        exit("\n\nProgram Terminated")
+        quit("\n\nProgram Terminated")
 
 
 if __name__ == "__main__":
