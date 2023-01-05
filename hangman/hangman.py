@@ -14,6 +14,29 @@ class Hangman:
         self.lives = 6
         self.player_score = 0
 
+    def user_input(self, words):
+        """Requesting user input and validating choice."""
+        while True:
+            print("\nSelect your difficulty.")
+            print("\nBeginner: Type '1'")
+            print("Expert: Type '2'")
+
+            try:
+                user_input = int(input("\nEnter: "))
+            except ValueError:
+                print("\nThat is not a number.")
+                continue
+
+            # User input validation conditions.
+            choices = [1, 2]
+            if user_input not in choices:
+                print(f"\n{user_input} is not an valid choice!")
+                continue
+            elif user_input == 1:
+                return self.easy_random_word(words)
+            elif user_input == 2:
+                return self.hard_random_word(words)
+
     @staticmethod
     def easy_random_word(words):
         """Randomly select a word from a list."""
@@ -44,29 +67,6 @@ class Hangman:
                 continue
         return word.upper()
 
-    def user_input(self, words):
-        """Requesting user input and validating choice."""
-        while True:
-            print("\nSelect your difficulty.")
-            print("\nBeginner: Type '1'")
-            print("Expert: Type '2'")
-
-            try:
-                user_input = int(input("\nEnter: "))
-            except ValueError:
-                print("\nThat is not a number.")
-                continue
-
-            # User input validation conditions.
-            choices = [1, 2]
-            if user_input not in choices:
-                print(f"\n{user_input} is not an valid choice!")
-                continue
-            elif user_input == 1:
-                return self.easy_random_word(words)
-            elif user_input == 2:
-                return self.hard_random_word(words)
-
     def display_hangman(self):
         """Display hangman visuals."""
         print(lives_visual_dict[self.lives])
@@ -75,7 +75,9 @@ class Hangman:
         """Display hangman information."""
         print(f"Lives: {self.lives}")
         print("You have used these letters: ", " ".join(used_letters))
-        word_list = [letter if letter in used_letters else "-" for letter in word]
+        word_list = [
+            letter if letter in used_letters else "-" for letter in word
+        ]
         print("Current word: ", " ".join(word_list))
 
     @staticmethod
@@ -104,20 +106,6 @@ class Hangman:
             print("\nYou have already used that character. Please try again.")
         else:
             print("\nInvalid character. Please try again.")
-
-    def dead_condition(self, word):
-        """Return True if out of lives."""
-        if self.lives == 0:
-            print(f"\nYou have died. The word was {word}. Better luck next time!")
-            return True
-
-    @staticmethod
-    def win_condition(word, word_letters):
-        """Return True if correct word."""
-        if len(word_letters) == 0:
-            print("\nCongratulations!")
-            print(f"You have guessed the word {word} correctly!")
-            return True
 
     def add_player_score(self):
         """Add point to player score."""
@@ -151,22 +139,28 @@ class Hangman:
                 # Requesting user input.
                 guess = self.user_input_guess()
                 # Validating user input and conditions.
-                self.validate_user_guess(guess, word_letters, alphabet, used_letters)
+                self.validate_user_guess(
+                    guess, word_letters, alphabet, used_letters
+                )
 
                 # Out of lives condition.
-                if self.dead_condition(word) == True:
+                if self.lives == 0:
+                    print(
+                        f"\nYou have died. The word was {word}. Better luck next time!"
+                    )
                     self.display_hangman()
                     self.reset_player_lives()
                     break
-
                 # Correct word condition.
-                if self.win_condition(word, word_letters) == True:
+                elif len(word_letters) == 0:
+                    print("\nCongratulations!")
+                    print(f"You have guessed the word {word} correctly!")
                     self.add_player_score()
                     self.display_scoreboard()
                     self.reset_player_lives()
                     break
-
-                continue
+                else:
+                    continue
 
             # Requesting user input.
             self.restart()
