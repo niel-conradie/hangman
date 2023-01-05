@@ -1,8 +1,7 @@
 from hangman import Hangman
 
 
-def run():
-    """Hangman."""
+if __name__ == "__main__":
     run = Hangman()
 
     try:
@@ -11,7 +10,3 @@ def run():
     except KeyboardInterrupt:
         # Stopping the game.
         quit("\n\nProgram Terminated")
-
-
-if __name__ == "__main__":
-    run()
