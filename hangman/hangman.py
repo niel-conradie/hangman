@@ -14,29 +14,6 @@ class Hangman:
         self.lives = 6
         self.player_score = 0
 
-    def user_input(self, words):
-        """Requesting user input and validating choice."""
-        while True:
-            print("\nSelect your difficulty.")
-            print("\nBeginner: Type '1'")
-            print("Expert: Type '2'")
-
-            try:
-                user_input = int(input("\nEnter: "))
-            except ValueError:
-                print("\nThat is not a number.")
-                continue
-
-            # User input validation conditions.
-            choices = [1, 2]
-            if user_input not in choices:
-                print(f"\n{user_input} is not an valid choice!")
-                continue
-            elif user_input == 1:
-                return self.easy_random_word(words)
-            elif user_input == 2:
-                return self.hard_random_word(words)
-
     @staticmethod
     def easy_random_word(words):
         """Randomly select a word from a list."""
@@ -66,6 +43,31 @@ class Hangman:
             else:
                 continue
         return word.upper()
+
+    def user_input(self, words):
+        """Requesting user input and validating choice."""
+        while True:
+            # Display user input options.
+            print("\nSelect your difficulty.")
+            print("\nBeginner: Type '1'")
+            print("Expert: Type '2'")
+
+            # Requesting user input.
+            try:
+                user_input = int(input("\nEnter: "))
+            except ValueError:
+                print("\nThat is not a number.")
+                continue
+
+            # User input validation conditions.
+            choices = [1, 2]
+            if user_input not in choices:
+                print(f"\n{user_input} is not an valid choice!")
+                continue
+            elif user_input == 1:
+                return self.easy_random_word(words)
+            elif user_input == 2:
+                return self.hard_random_word(words)
 
     def display_hangman(self):
         """Display hangman visuals."""
@@ -127,6 +129,7 @@ class Hangman:
         while True:
             # Assign player to appropriate difficulty and select word.
             word = user_input
+            print(word)
             word_letters = set(word)
             alphabet = set(string.ascii_uppercase)
             used_letters = set()
@@ -155,9 +158,6 @@ class Hangman:
                 elif len(word_letters) == 0:
                     print("\nCongratulations!")
                     print(f"You have guessed the word {word} correctly!")
-                    self.add_player_score()
-                    self.display_scoreboard()
-                    self.reset_player_lives()
                     break
                 else:
                     continue
@@ -171,10 +171,12 @@ class Hangman:
     def restart():
         """Requesting user input and validating choice."""
         while True:
+            # Display user input options.
             print("\nPlay Again?")
             print("\nYes: Type '1'")
             print("No: Type '2'")
 
+            # Requesting user input.
             try:
                 user_input = int(input("\nEnter: "))
             except ValueError:
