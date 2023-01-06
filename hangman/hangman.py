@@ -15,36 +15,7 @@ class Hangman:
         self.player_score = 0
 
     @staticmethod
-    def easy_random_word(words):
-        """Randomly select a word from a list."""
-        while True:
-            word = choice(words)
-            while "-" in word or " " in word:
-                word = choice(words)
-
-            # Length of word validation condition.
-            if len(word) <= 5:
-                break
-            else:
-                continue
-        return word.upper()
-
-    @staticmethod
-    def hard_random_word(words):
-        """Randomly select a word from a list."""
-        while True:
-            word = choice(words)
-            while "-" in word or " " in word:
-                word = choice(words)
-
-            # Length of word validation condition.
-            if len(word) > 5:
-                break
-            else:
-                continue
-        return word.upper()
-
-    def user_input(self, words):
+    def user_input():
         """Requesting user input and validating choice."""
         while True:
             # Display user input options.
@@ -65,9 +36,50 @@ class Hangman:
                 print(f"\n{user_input} is not an valid choice!")
                 continue
             elif user_input == 1:
-                return self.easy_random_word(words)
+                return "1"
             elif user_input == 2:
-                return self.hard_random_word(words)
+                return "2"
+
+    @staticmethod
+    def easy_random_word(words):
+        """Randomly select a word from a list."""
+        while True:
+            word = choice(words)
+            while "-" in word or " " in word:
+                word = choice(words)
+
+            # Length of word validation condition.
+            if len(word) <= 5:
+                break
+            else:
+                continue
+
+        return word.upper()
+
+    @staticmethod
+    def hard_random_word(words):
+        """Randomly select a word from a list."""
+        while True:
+            word = choice(words)
+            while "-" in word or " " in word:
+                word = choice(words)
+
+            # Length of word validation condition.
+            if len(word) > 5:
+                break
+            else:
+                continue
+
+        return word.upper()
+
+    def fetch_word(self, user_input, words):
+        """Return appropriate word for a given user input."""
+        if user_input == "1":
+            word = self.easy_random_word(words)
+            return word
+        elif user_input == "2":
+            word = self.hard_random_word(words)
+            return word
 
     def display_hangman(self):
         """Display hangman visuals."""
@@ -124,12 +136,11 @@ class Hangman:
     def start_game(self):
         """Starting the hangman game."""
         # Requesting user input.
-        user_input = self.user_input(words)
+        user_input = self.user_input()
 
         while True:
             # Assign player to appropriate difficulty and select word.
-            word = user_input
-            print(word)
+            word = self.fetch_word(user_input, words)
             word_letters = set(word)
             alphabet = set(string.ascii_uppercase)
             used_letters = set()
