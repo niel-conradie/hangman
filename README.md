@@ -4,14 +4,13 @@
 
 Hangman is a guessing game for two or more players. One player thinks of a word, phrase or sentence and the other(s) tries to guess it by suggesting letters within a certain number of guesses.
 
-----
+---
 
 ## **Requirements**
 
 - [Python 3.X](https://www.python.org/downloads/)
-- [Black](https://pypi.org/project/black/)
 
-----
+---
 
 ## **Installation**
 
@@ -54,23 +53,17 @@ PS C:> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 PS C:> .venv\Scripts\Activate.ps1
 ```
 
-- **Install Requirements**
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-----
+---
 
 ## **Usage**
 
 - To launch the Hangman game use the [run.py](https://github.com/niel-conradie/hangman/blob/master/hangman/run.py) file to start.
 - Select the game mode in the terminal window and have fun.
 
-----
+---
 
 ## **License**
 
 [MIT License](https://github.com/niel-conradie/Hangman/blob/master/LICENSE)
 
-----
+---
